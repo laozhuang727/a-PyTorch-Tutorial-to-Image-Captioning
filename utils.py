@@ -38,7 +38,15 @@ def create_input_files(dataset, karpathy_json_path, image_folder, captions_per_i
     test_image_captions = []
     word_freq = Counter()
 
-    for img in data['images']:
+    # add by ryan to skip
+    import random
+    random.seed(10)
+
+    data_img_smallset = data['images']
+    data_img_smallset = random.sample(data_img_smallset, 2000)  # 从list中随机获取4000个元素,以加快测试速度
+
+    # for img in data['images']:
+    for img in data_img_smallset:
         captions = []
         for c in img['sentences']:
             # Update word frequency
